@@ -1,17 +1,34 @@
 import '../styles/globals.css'
 import { AppProps } from 'next/app'
 import { Provider } from 'react-redux'
+import { useState } from 'react'
+import { QueryClient, QueryClientProvider } from 'react-query'
+import { ReactQueryDevtools } from 'react-query/devtools'
 
 import { useUserChanged } from '../hooks/useUserChanged'
 import { store } from '../app/store'
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { } = useUserChanged()
-  return <>
-    <Provider store={store}>
-      <Component {...pageProps} />
-    </Provider>
-  </>
+  const [queryClient] = useState(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            retry: false,
+            refetchOnWindowFocus: false,
+          },
+        },
+      })
+  )
+  return (
+    <QueryClientProvider client={queryClient}>
+      <Provider store={store}>
+        <Component {...pageProps} />
+      </Provider>
+      <ReactQueryDevtools />
+    </QueryClientProvider>
+  )
 }
 
 export default MyApp
