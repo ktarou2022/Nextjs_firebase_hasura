@@ -129,6 +129,7 @@ export const useAppMutate = () => {
             previousNews.filter((news) => news.id !== variables)
           )
         }
+        console.log('test')
         dispatch(resetEditedNews())
       },
     }
