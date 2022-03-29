@@ -21,7 +21,7 @@ mutation CreateNews($content: String!) {
 `
 
 export const UPDATE_NEWS = gql`
-mutation UpdateNews ($id: uuid!, $content: $String!) {
+mutation UpdateNews ($id: uuid!, $content: String!) {
   update_news_by_pk(pk_columns: { id: $id }, _set: { content: $content }) {
     id
     content
