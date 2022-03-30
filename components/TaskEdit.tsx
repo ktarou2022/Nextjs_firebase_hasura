@@ -9,7 +9,6 @@ const TaskEdit: VFC = () => {
   const dispatch = useDispatch()
   const editedTask = useSelector(selectTask)
 
-  console.log(useQueryTasks().data)
   const { createTaskMutation, updateTaskMutation } = useAppMutate()
   const submitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -18,6 +17,10 @@ const TaskEdit: VFC = () => {
     } else {
       updateTaskMutation.mutate(editedTask)
     }
+  }
+
+  if (createTaskMutation.error || updateTaskMutation.error) {
+    return <div>{'Error'}</div>
   }
 
   return (
