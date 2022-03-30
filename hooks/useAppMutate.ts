@@ -14,8 +14,6 @@ import {
 } from '../queries/queries'
 import { Task, EditTask, News, EditNews } from '../types/types'
 import { resetEditedTask, resetEditedNews } from '../slices/uiSlice'
-import { title } from 'process'
-import { variants } from '../tailwind.config'
 
 const cookie = new Cookie()
 const endpoint = process.env.NEXT_PUBLIC_HASURA_ENDPOINT
@@ -34,7 +32,7 @@ export const useAppMutate = () => {
   }, [cookie.get('token')])
 
   const createTaskMutation = useMutation(
-    (title: string) => graphQLClient.request(CREATE_TASK, { title: title }),
+    ( title : string ) => graphQLClient.request(CREATE_TASK, { title: title }),
     {
       onSuccess: (res) => {
         const previousTodos = queryClient.getQueryData<Task[]>('tasks')
