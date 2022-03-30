@@ -44,6 +44,9 @@ export const useAppMutate = () => {
         }
         dispatch(resetEditedTask())
       },
+      onError: () => {
+        dispatch(resetEditedTask())
+      },
     }
   )
 
@@ -62,6 +65,10 @@ export const useAppMutate = () => {
         }
         dispatch(resetEditedTask())
       },
+      onError: () => {
+        dispatch(resetEditedTask())
+      },
+
     }
   )
 
@@ -95,6 +102,9 @@ export const useAppMutate = () => {
         }
         dispatch(resetEditedNews())
       },
+      onError: () => {
+        dispatch(resetEditedNews())
+      },
     }
   )
 
@@ -111,6 +121,9 @@ export const useAppMutate = () => {
             )
           )
         }
+        dispatch(resetEditedNews())
+      },
+      onError: () => {
         dispatch(resetEditedNews())
       },
     }

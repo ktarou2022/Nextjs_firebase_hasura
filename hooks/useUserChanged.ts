@@ -29,12 +29,12 @@ export const useUserChanged = () => {
           unSubMeta = userRef.onSnapshot(async () => {
             const tokenSnap = await user.getIdToken(true)
             const idTokenResultSnap = await user.getIdTokenResult()
-            const hasuraCliamsSnap = idTokenResultSnap.claims[HASURA_TOKEN_KEY]
+            const hasuraClaimsSnap = idTokenResultSnap.claims[HASURA_TOKEN_KEY]
 
-        if (hasuraClaims) {
-          cookie.set('token', token, { path: '/' })
+        if (hasuraClaimsSnap) {
+          cookie.set('token', tokenSnap, { path: '/' })
           router.push('/tasks')
-        } 
+        }
           })
         }
       }
